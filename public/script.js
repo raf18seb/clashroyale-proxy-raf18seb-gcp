@@ -43,7 +43,7 @@ function fetchWarlog(clanTag) {
 document.getElementById('fetch-clan-btn').addEventListener('click', () => {
     const clanTag = document.getElementById('clan-tag-input').value.trim().toUpperCase();
     if (clanTag) {
-        fetchClanData(clanTag);  // Pobieranie podstawowych danych klanu
+        //fetchClanData(clanTag);  // Pobieranie podstawowych danych klanu
         fetchWarlog(clanTag);    // Pobieranie danych o CW
     } else {
         document.getElementById('clan-info').innerHTML = `<p>Please enter a valid clan tag.</p>`;
