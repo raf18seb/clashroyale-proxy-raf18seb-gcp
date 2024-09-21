@@ -1,3 +1,5 @@
+console.log('Loaded.');
+
 // Funkcja do pobierania danych o Clan Wars (CW)
 function fetchWarlog(clanTag) {
     fetch(`/clan/${clanTag}/warlog`)
