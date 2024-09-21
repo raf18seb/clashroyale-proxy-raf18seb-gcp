@@ -19,7 +19,7 @@ function fetchClanData(clanTag) {
 }
 // Funkcja do pobierania danych o Clan Wars (CW)
 function fetchWarlog(clanTag) {
-    fetch(`/clan/${clanTag}/warlog`)
+    fetch(`/player/${clanTag}`)
         .then(response => response.json())
         .then(data => {
             const clanInfo = document.getElementById('clan-info');

@@ -25,25 +25,25 @@ app.get('/clan/:tag', async (req, res) => {
     }
 });
 
-app.get('/clan/:tag/warlog', async (req, res) => {
-    const clanTag = req.params.tag;
+app.get('/player/:tag', async (req, res) => {
+    const playerTag = req.params.tag;
 
     try {
-        const response = await fetch(`https://api.clashroyale.com/v1/clans/%23${clanTag}/warlog`, {
+        const response = await fetch(`https://api.clashroyale.com/v1/players/%23${playerTag}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${apiToken}`
             }
         });
         const data = await response.json();
-        
-        if (data.items) {
-            res.json(data.items);
+
+        if (response.ok) {
+            res.json(data);  // Zwróć dane gracza w JSON
         } else {
-            res.status(404).json({ error: 'War log not found or Clan does not participate in Clan Wars' });
+            res.status(response.status).json(data);  // Obsłuż błąd
         }
     } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch war log data' });
+        res.status(500).json({ error: 'Failed to fetch player data' });
     }
 });
 
