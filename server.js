@@ -25,9 +25,7 @@ const apiToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMD
 //     }
 // });
 
-// app.listen(port, () => {
-//     console.log(`Server running on port ${port}`);
-// });
+
 
 app.get('/clan/:tag/warlog', async (req, res) => {
     const clanTag = req.params.tag;
@@ -49,4 +47,8 @@ app.get('/clan/:tag/warlog', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch war log data' });
     }
+});
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
