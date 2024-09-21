@@ -1,22 +1,22 @@
 console.log('Loaded.');
 
 const clanTag = "YPJ0VRRR";
-
-fetch(`/clan/${clanTag}`)
-    .then(response => response.json())
-    .then(data => {
-        const clanInfo = document.getElementById('clan-info');
-        clanInfo.innerHTML = `
-            <h2>Clan Name: ${data.name}</h2>
-            <p>Clan Level: ${data.clanLevel}</p>
-            <p>Members: ${data.members}</p>
-            <p>Score: ${data.clanScore}</p>
-        `;
-    })
-    .catch(error => {
-        console.error('Error fetching clan data:', error);
-    });
-
+function fetchClanData(clanTag) {
+    fetch(`/clan/${clanTag}`)
+        .then(response => response.json())
+        .then(data => {
+            const clanInfo = document.getElementById('clan-info');
+            clanInfo.innerHTML = `
+                <h2>Clan Name: ${data.name}</h2>
+                <p>Clan Level: ${data.clanLevel}</p>
+                <p>Members: ${data.members}</p>
+                <p>Score: ${data.clanScore}</p>
+            `;
+        })
+        .catch(error => {
+            console.error('Error fetching clan data:', error);
+        });
+}
 // Funkcja do pobierania danych o Clan Wars (CW)
 function fetchWarlog(clanTag) {
     fetch(`/clan/${clanTag}/warlog`)
@@ -60,7 +60,7 @@ function fetchWarlog(clanTag) {
 document.getElementById('fetch-clan-btn').addEventListener('click', () => {
     const clanTag = document.getElementById('clan-tag-input').value.trim().toUpperCase();
     if (clanTag) {
-        //fetchClanData(clanTag);  // Pobieranie podstawowych danych klanu
+        fetchClanData(clanTag);  // Pobieranie podstawowych danych klanu
         fetchWarlog(clanTag);    // Pobieranie danych o CW
     } else {
         document.getElementById('clan-info').innerHTML = `<p>Please enter a valid clan tag.</p>`;
